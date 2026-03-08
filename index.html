@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DJDPA Serveis Informàtics</title>
+  <meta name="description" content="DJDPA Serveis Informàtics - serveis informàtics per a empreses i particulars." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+
+  <style>
+    :root {
+      --brand-blue: #0b5ed7;
+      --brand-blue-dark: #123a7a;
+      --brand-cyan: #1fa5ff;
+      --brand-green: #76b82a;
+      --text-soft: #55708a;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --shadow: 0 18px 40px rgba(18, 58, 122, 0.10);
+      --radius: 22px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top right, rgba(31,165,255,0.13), transparent 25%),
+        radial-gradient(circle at top left, rgba(118,184,42,0.08), transparent 20%),
+        linear-gradient(180deg, #f8fbff 0%, #edf5ff 100%);
+      color: #17324d;
+    }
+
+    nav.container-fluid {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(18,58,122,0.08);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+
+    .brand-logo {
+      height: 46px;
+      width: auto;
+      display: block;
+      border-radius: 10px;
+      background: white;
+      padding: .15rem;
+    }
+
+    .brand-name {
+      color: var(--brand-blue-dark);
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .lang-select {
+      min-width: 170px;
+      margin: 0;
+    }
+
+    .hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .hero-box,
+    .panel,
+    .service-card,
+    .info-card,
+    .step-card,
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(18,58,122,0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-box {
+      padding: 2rem;
+      height: 100%;
+    }
+
+    .hero-title {
+      margin-bottom: .8rem;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.02;
+      background: linear-gradient(90deg, var(--brand-blue-dark), var(--brand-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 1.5rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin: 1.2rem 0 0;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: .45rem .85rem;
+      border-radius: 999px;
+      background: rgba(31,165,255,0.12);
+      color: var(--brand-blue-dark);
+      font-weight: 600;
+      font-size: .92rem;
+    }
+
+    .hero-visual,
+    .image-frame {
+      height: 100%;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(18,58,122,0.08);
+      background: #dfefff;
+    }
+
+    .hero-visual img,
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .section {
+      padding: 2.5rem 0;
+    }
+
+    .section h2 {
+      color: var(--brand-blue-dark);
+      margin-bottom: .35rem;
+    }
+
+    .section-intro {
+      color: var(--text-soft);
+      max-width: 72ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .panel {
+      padding: 1.4rem;
+    }
+
+    .service-grid,
+    .info-grid,
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .service-card,
+    .info-card,
+    .step-card,
+    .contact-card {
+      padding: 1.25rem;
+      height: 100%;
+    }
+
+    .service-card h4,
+    .info-card h4,
+    .step-card h4,
+    .contact-card h4 {
+      color: var(--brand-blue-dark);
+      margin-bottom: .55rem;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(11,94,215,0.14), rgba(118,184,42,0.12));
+      color: var(--brand-blue-dark);
+      font-weight: 900;
+      margin-bottom: .9rem;
+      font-size: 1.2rem;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, var(--brand-blue-dark), var(--brand-blue));
+      color: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 20px 50px rgba(11,94,215,0.25);
+    }
+
+    .highlight-box h2,
+    .highlight-box h3,
+    .highlight-box p {
+      color: white;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 1rem;
+    }
+
+    footer.container {
+      padding-top: 1rem;
+      padding-bottom: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-box {
+        padding: 1.35rem;
+      }
+
+      nav.container-fluid ul:last-child {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li>
+        <strong class="brand-wrap">
+          <img src="logo.png" alt="Logo DJDPA Serveis Informàtics" class="brand-logo" />
+          <span class="brand-name">DJDPA</span>
+        </strong>
+      </li>
+    </ul>
+    <ul>
+      <li><a href="#inici" data-i18n="nav_home">Inici</a></li>
+      <li><a href="#empresa" data-i18n="nav_company">Empresa</a></li>
+      <li><a href="#serveis" data-i18n="nav_services">Serveis</a></li>
+      <li><a href="#contacte" role="button" data-i18n="nav_contact">Contacte</a></li>
+      <li>
+        <select id="languageSwitcher" class="lang-select" aria-label="Seleccionar idioma">
+          <option value="ca">Català</option>
+          <option value="es">Castellano</option>
+          <option value="en">English</option>
+        </select>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <div class="grid hero" id="inici">
+      <section class="hero-box">
+        <hgroup>
+          <h2 class="hero-title">DJDPA Serveis Informàtics</h2>
+          <h3 data-i18n="hero_subtitle">Solucions informàtiques segures, modernes i eficients</h3>
+        </hgroup>
+
+        <p class="hero-sub" data-i18n="hero_text">
+          Oferim serveis informàtics per a empreses i particulars: manteniment, suport tècnic, xarxes, seguretat digital i assessorament tecnològic adaptat a cada necessitat.
+        </p>
+
+        <div class="badge-row">
+          <span class="pill" data-i18n="badge_1">Suport tècnic</span>
+          <span class="pill" data-i18n="badge_2">Manteniment</span>
+          <span class="pill" data-i18n="badge_3">Xarxes</span>
+          <span class="pill" data-i18n="badge_4">Seguretat</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contacte" role="button" data-i18n="hero_cta_1">Demanar pressupost</a>
+          <a href="#serveis" class="secondary" data-i18n="hero_cta_2">Veure serveis</a>
+        </div>
+      </section>
+
+      <section class="hero-visual">
+        <img src="hero1.png" alt="Imatge corporativa de serveis informàtics DJDPA" />
+      </section>
+    </div>
+
+    <section class="section" id="empresa">
+      <div class="grid">
+        <section class="panel">
+          <hgroup>
+            <h2 data-i18n="about_title">Sobre DJDPA</h2>
+            <h3 data-i18n="about_subtitle">Un projecte nascut de cinc estudiants amb iniciativa, il·lusió i vocació tecnològica</h3>
+          </hgroup>
+
+          <p data-i18n="about_p1">
+            DJDPA neix de la història de cinc alumnes que es van conèixer estudiant i que, compartint l’interès per la tecnologia i el treball en equip, van decidir emprendre junts una empresa de serveis informàtics. El projecte sorgeix de la voluntat d’oferir solucions útils, properes i professionals tant a particulars com a empreses.
+          </p>
+
+          <p data-i18n="about_p2">
+            La nostra empresa representa l’esforç, la col·laboració i la motivació d’un grup jove que vol transformar els coneixements adquirits en serveis reals de suport tècnic, manteniment, xarxes i assessorament tecnològic. DJDPA és, sobretot, una aposta per créixer junts i construir un servei de confiança.
+          </p>
+        </section>
+
+        <section class="image-frame">
+          <img src="hero2.png" alt="Equipament i entorn tecnològic DJDPA" />
+        </section>
+      </div>
+    </section>
+
+    <section class="section" id="serveis">
+      <h2 data-i18n="services_title">Serveis principals</h2>
+      <p class="section-intro" data-i18n="services_intro">
+        Una presentació completa dels serveis més habituals d’una empresa de suport informàtic.
+      </p>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <div class="icon">01</div>
+          <h4 data-i18n="service_1_title">Manteniment informàtic</h4>
+          <p data-i18n="service_1_text">Revisió, optimització i posada a punt d’ordinadors, portàtils i sistemes.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="icon">02</div>
+          <h4 data-i18n="service_2_title">Suport tècnic</h4>
+          <p data-i18n="service_2_text">Resolució d’incidències, ajuda remota o presencial i assistència amb programari.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="icon">03</div>
+          <h4 data-i18n="service_3_title">Xarxes i connectivitat</h4>
+          <p data-i18n="service_3_text">Configuració de routers, Wi-Fi, equips de xarxa i millora de la connectivitat.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="icon">04</div>
+          <h4 data-i18n="service_4_title">Seguretat digital</h4>
+          <p data-i18n="service_4_text">Còpies de seguretat, antivirus, protecció d’accessos i mesures preventives.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="icon">05</div>
+          <h4 data-i18n="service_5_title">Instal·lació i configuració</h4>
+          <p data-i18n="service_5_text">Posada en marxa d’equips, programes, comptes i dispositius.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="icon">06</div>
+          <h4 data-i18n="service_6_title">Assessorament tecnològic</h4>
+          <p data-i18n="service_6_text">Recomanacions sobre equips, renovacions, compres i millores digitals.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="highlight-box">
+        <hgroup>
+          <h2 data-i18n="why_title">Per què escollir-nos</h2>
+          <h3 data-i18n="why_subtitle">Imatge professional, atenció clara i solucions pràctiques</h3>
+        </hgroup>
+
+        <p data-i18n="why_text">
+          Treballem amb una idea simple: que la tecnologia sigui una ajuda i no un problema.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 data-i18n="advantages_title">Avantatges</h2>
+      <p class="section-intro" data-i18n="advantages_intro">
+        Punts forts que pots destacar a la teva web corporativa.
+      </p>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <h4 data-i18n="adv_1_title">Atenció personalitzada</h4>
+          <p data-i18n="adv_1_text">Cada client pot tenir necessitats diferents. Adaptem la resposta a cada cas.</p>
+        </article>
+
+        <article class="info-card">
+          <h4 data-i18n="adv_2_title">Rapidesa i proximitat</h4>
+          <p data-i18n="adv_2_text">Resposta clara i orientada a resoldre incidències amb agilitat.</p>
+        </article>
+
+        <article class="info-card">
+          <h4 data-i18n="adv_3_title">Prevenció i seguretat</h4>
+          <p data-i18n="adv_3_text">No només resolem problemes: també ajudem a evitar-los.</p>
+        </article>
+
+        <article class="info-card">
+          <h4 data-i18n="adv_4_title">Imatge moderna</h4>
+          <p data-i18n="adv_4_text">Comunicació visual professional i coherent amb el sector tecnològic.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 data-i18n="process_title">Com treballem</h2>
+      <p class="section-intro" data-i18n="process_intro">
+        Un procés simple que dona confiança i facilita la comunicació amb el client.
+      </p>
+
+      <div class="steps-grid">
+        <article class="step-card">
+          <h4 data-i18n="step_1_title">1. Primer contacte</h4>
+          <p data-i18n="step_1_text">Ens expliques la necessitat o incidència i analitzem el cas.</p>
+        </article>
+
+        <article class="step-card">
+          <h4 data-i18n="step_2_title">2. Diagnosi</h4>
+          <p data-i18n="step_2_text">Valorem el problema i la millor solució.</p>
+        </article>
+
+        <article class="step-card">
+          <h4 data-i18n="step_3_title">3. Proposta</h4>
+          <p data-i18n="step_3_text">Presentem una acció clara: suport, manteniment, millora o instal·lació.</p>
+        </article>
+
+        <article class="step-card">
+          <h4 data-i18n="step_4_title">4. Seguiment</h4>
+          <p data-i18n="step_4_text">Comprovem que el resultat sigui correcte i funcional.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contacte">
+      <h2 data-i18n="contact_title">Contacte</h2>
+      <p class="section-intro" data-i18n="contact_intro">
+        Deixa aquesta part preparada i substitueix després les dades reals de l’empresa.
+      </p>
+
+      <div class="contact-grid">
+        <article class="contact-card">
+          <h4 data-i18n="form_title">Envia’ns una consulta</h4>
+          <form class="grid">
+            <input type="text" id="firstname" name="firstname" placeholder="Nom / Nombre / Name" aria-label="Name" required />
+            <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" required />
+            <button type="submit" onclick="event.preventDefault()" data-i18n="form_button">Enviar consulta</button>
+          </form>
+        </article>
+
+        <article class="contact-card">
+          <h4 data-i18n="contact_data_title">Dades de contacte</h4>
+          <p><strong data-i18n="contact_company_label">Empresa:</strong> DJDPA Serveis Informàtics</p>
+          <p><strong data-i18n="contact_phone_label">Telèfon:</strong> +34 600 000 000</p>
+          <p><strong>Email:</strong> contacte@djdpa.cat</p>
+          <p><strong data-i18n="contact_area_label">Zona de servei:</strong> Catalunya</p>
+          <p><strong data-i18n="contact_hours_label">Horari:</strong> Dilluns a divendres</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section aria-label="Subscribe example">
+    <div class="container">
+      <article class="panel">
+        <hgroup>
+          <h2 data-i18n="ready_title">Preparada per GitHub Pages</h2>
+          <h3 data-i18n="ready_subtitle">Web estàtica, ràpida i fàcil de mantenir</h3>
+        </hgroup>
+        <form class="grid">
+          <input type="text" id="projectname" name="projectname" placeholder="Nom del projecte / Project name" aria-label="Project name" required />
+          <input type="email" id="projectemail" name="projectemail" placeholder="Email de contacte" aria-label="Email de contacte" required />
+          <button type="submit" onclick="event.preventDefault()" data-i18n="ready_button">Projecte llest</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <footer class="container">
+    <small>
+      <a href="#inici">DJDPA Serveis Informàtics</a> •
+      <a href="#contacte" data-i18n="footer_contact">Contacte</a>
+    </small>
+  </footer>
+
+  <script>
+    const translations = {
+      ca: {
+        nav_home: "Inici",
+        nav_company: "Empresa",
+        nav_services: "Serveis",
+        nav_contact: "Contacte",
+        hero_subtitle: "Solucions informàtiques segures, modernes i eficients",
+        hero_text: "Oferim serveis informàtics per a empreses i particulars: manteniment, suport tècnic, xarxes, seguretat digital i assessorament tecnològic adaptat a cada necessitat.",
+        badge_1: "Suport tècnic",
+        badge_2: "Manteniment",
+        badge_3: "Xarxes",
+        badge_4: "Seguretat",
+        hero_cta_1: "Demanar pressupost",
+        hero_cta_2: "Veure serveis",
+        about_title: "Sobre DJDPA",
+        about_subtitle: "Un projecte nascut de cinc estudiants amb iniciativa, il·lusió i vocació tecnològica",
+        about_p1: "DJDPA neix de la història de cinc alumnes que es van conèixer estudiant i que, compartint l’interès per la tecnologia i el treball en equip, van decidir emprendre junts una empresa de serveis informàtics. El projecte sorgeix de la voluntat d’oferir solucions útils, properes i professionals tant a particulars com a empreses.",
+        about_p2: "La nostra empresa representa l’esforç, la col·laboració i la motivació d’un grup jove que vol transformar els coneixements adquirits en serveis reals de suport tècnic, manteniment, xarxes i assessorament tecnològic. DJDPA és, sobretot, una aposta per créixer junts i construir un servei de confiança.",
+        services_title: "Serveis principals",
+        services_intro: "Una presentació completa dels serveis més habituals d’una empresa de suport informàtic.",
+        service_1_title: "Manteniment informàtic",
+        service_1_text: "Revisió, optimització i posada a punt d’ordinadors, portàtils i sistemes.",
+        service_2_title: "Suport tècnic",
+        service_2_text: "Resolució d’incidències, ajuda remota o presencial i assistència amb programari.",
+        service_3_title: "Xarxes i connectivitat",
+        service_3_text: "Configuració de routers, Wi-Fi, equips de xarxa i millora de la connectivitat.",
+        service_4_title: "Seguretat digital",
+        service_4_text: "Còpies de seguretat, antivirus, protecció d’accessos i mesures preventives.",
+        service_5_title: "Instal·lació i configuració",
+        service_5_text: "Posada en marxa d’equips, programes, comptes i dispositius.",
+        service_6_title: "Assessorament tecnològic",
+        service_6_text: "Recomanacions sobre equips, renovacions, compres i millores digitals.",
+        why_title: "Per què escollir-nos",
+        why_subtitle: "Imatge professional, atenció clara i solucions pràctiques",
+        why_text: "Treballem amb una idea simple: que la tecnologia sigui una ajuda i no un problema.",
+        advantages_title: "Avantatges",
+        advantages_intro: "Punts forts que pots destacar a la teva web corporativa.",
+        adv_1_title: "Atenció personalitzada",
+        adv_1_text: "Cada client pot tenir necessitats diferents. Adaptem la resposta a cada cas.",
+        adv_2_title: "Rapidesa i proximitat",
+        adv_2_text: "Resposta clara i orientada a resoldre incidències amb agilitat.",
+        adv_3_title: "Prevenció i seguretat",
+        adv_3_text: "No només resolem problemes: també ajudem a evitar-los.",
+        adv_4_title: "Imatge moderna",
+        adv_4_text: "Comunicació visual professional i coherent amb el sector tecnològic.",
+        process_title: "Com treballem",
+        process_intro: "Un procés simple que dona confiança i facilita la comunicació amb el client.",
+        step_1_title: "1. Primer contacte",
+        step_1_text: "Ens expliques la necessitat o incidència i analitzem el cas.",
+        step_2_title: "2. Diagnosi",
+        step_2_text: "Valorem el problema i la millor solució.",
+        step_3_title: "3. Proposta",
+        step_3_text: "Presentem una acció clara: suport, manteniment, millora o instal·lació.",
+        step_4_title: "4. Seguiment",
+        step_4_text: "Comprovem que el resultat sigui correcte i funcional.",
+        contact_title: "Contacte",
+        contact_intro: "Deixa aquesta part preparada i substitueix després les dades reals de l’empresa.",
+        form_title: "Envia’ns una consulta",
+        form_button: "Enviar consulta",
+        contact_data_title: "Dades de contacte",
+        contact_company_label: "Empresa:",
+        contact_phone_label: "Telèfon:",
+        contact_area_label: "Zona de servei:",
+        contact_hours_label: "Horari:",
+        ready_title: "Preparada per GitHub Pages",
+        ready_subtitle: "Web estàtica, ràpida i fàcil de mantenir",
+        ready_button: "Projecte llest",
+        footer_contact: "Contacte"
+      },
+      es: {
+        nav_home: "Inicio",
+        nav_company: "Empresa",
+        nav_services: "Servicios",
+        nav_contact: "Contacto",
+        hero_subtitle: "Soluciones informáticas seguras, modernas y eficientes",
+        hero_text: "Ofrecemos servicios informáticos para empresas y particulares: mantenimiento, soporte técnico, redes, seguridad digital y asesoramiento tecnológico adaptado a cada necesidad.",
+        badge_1: "Soporte técnico",
+        badge_2: "Mantenimiento",
+        badge_3: "Redes",
+        badge_4: "Seguridad",
+        hero_cta_1: "Pedir presupuesto",
+        hero_cta_2: "Ver servicios",
+        about_title: "Sobre DJDPA",
+        about_subtitle: "Un proyecto nacido de cinco estudiantes con iniciativa, ilusión y vocación tecnológica",
+        about_p1: "DJDPA nace de la historia de cinco alumnos que se conocieron estudiando y que, compartiendo el interés por la tecnología y el trabajo en equipo, decidieron emprender juntos una empresa de servicios informáticos. El proyecto surge con la voluntad de ofrecer soluciones útiles, cercanas y profesionales tanto a particulares como a empresas.",
+        about_p2: "Nuestra empresa representa el esfuerzo, la colaboración y la motivación de un grupo joven que quiere transformar los conocimientos adquiridos en servicios reales de soporte técnico, mantenimiento, redes y asesoramiento tecnológico. DJDPA es, sobre todo, una apuesta por crecer juntos y construir un servicio de confianza.",
+        services_title: "Servicios principales",
+        services_intro: "Una presentación completa de los servicios más habituales de una empresa de soporte informático.",
+        service_1_title: "Mantenimiento informático",
+        service_1_text: "Revisión, optimización y puesta a punto de ordenadores, portátiles y sistemas.",
+        service_2_title: "Soporte técnico",
+        service_2_text: "Resolución de incidencias, ayuda remota o presencial y asistencia con software.",
+        service_3_title: "Redes y conectividad",
+        service_3_text: "Configuración de routers, Wi-Fi, equipos de red y mejora de la conectividad.",
+        service_4_title: "Seguridad digital",
+        service_4_text: "Copias de seguridad, antivirus, protección de accesos y medidas preventivas.",
+        service_5_title: "Instalación y configuración",
+        service_5_text: "Puesta en marcha de equipos, programas, cuentas y dispositivos.",
+        service_6_title: "Asesoramiento tecnológico",
+        service_6_text: "Recomendaciones sobre equipos, renovaciones, compras y mejoras digitales.",
+        why_title: "Por qué elegirnos",
+        why_subtitle: "Imagen profesional, atención clara y soluciones prácticas",
+        why_text: "Trabajamos con una idea simple: que la tecnología sea una ayuda y no un problema.",
+        advantages_title: "Ventajas",
+        advantages_intro: "Puntos fuertes que puedes destacar en tu web corporativa.",
+        adv_1_title: "Atención personalizada",
+        adv_1_text: "Cada cliente puede tener necesidades diferentes. Adaptamos la respuesta a cada caso.",
+        adv_2_title: "Rapidez y cercanía",
+        adv_2_text: "Respuesta clara y orientada a resolver incidencias con agilidad.",
+        adv_3_title: "Prevención y seguridad",
+        adv_3_text: "No solo resolvemos problemas: también ayudamos a evitarlos.",
+        adv_4_title: "Imagen moderna",
+        adv_4_text: "Comunicación visual profesional y coherente con el sector tecnológico.",
+        process_title: "Cómo trabajamos",
+        process_intro: "Un proceso simple que da confianza y facilita la comunicación con el cliente.",
+        step_1_title: "1. Primer contacto",
+        step_1_text: "Nos explicas la necesidad o incidencia y analizamos el caso.",
+        step_2_title: "2. Diagnóstico",
+        step_2_text: "Valoramos el problema y la mejor solución.",
+        step_3_title: "3. Propuesta",
+        step_3_text: "Presentamos una acción clara: soporte, mantenimiento, mejora o instalación.",
+        step_4_title: "4. Seguimiento",
+        step_4_text: "Comprobamos que el resultado sea correcto y funcional.",
+        contact_title: "Contacto",
+        contact_intro: "Deja esta parte preparada y sustituye después los datos reales de la empresa.",
+        form_title: "Envíanos una consulta",
+        form_button: "Enviar consulta",
+        contact_data_title: "Datos de contacto",
+        contact_company_label: "Empresa:",
+        contact_phone_label: "Teléfono:",
+        contact_area_label: "Zona de servicio:",
+        contact_hours_label: "Horario:",
+        ready_title: "Preparada para GitHub Pages",
+        ready_subtitle: "Web estática, rápida y fácil de mantener",
+        ready_button: "Proyecto listo",
+        footer_contact: "Contacto"
+      },
+      en: {
+        nav_home: "Home",
+        nav_company: "Company",
+        nav_services: "Services",
+        nav_contact: "Contact",
+        hero_subtitle: "Secure, modern and efficient IT solutions",
+        hero_text: "We provide IT services for companies and individuals: maintenance, technical support, networks, digital security and technology consulting tailored to each need.",
+        badge_1: "Technical support",
+        badge_2: "Maintenance",
+        badge_3: "Networks",
+        badge_4: "Security",
+        hero_cta_1: "Request a quote",
+        hero_cta_2: "View services",
+        about_title: "About DJDPA",
+        about_subtitle: "A project born from five students with initiative, ambition and a passion for technology",
+        about_p1: "DJDPA was born from the story of five students who met while studying and, through their shared interest in technology and teamwork, decided to start an IT services company together. The project was created with the aim of offering useful, approachable and professional solutions for both individuals and businesses.",
+        about_p2: "Our company represents the effort, collaboration and motivation of a young team that wants to transform its knowledge into real services such as technical support, maintenance, networking and technology consulting. Above all, DJDPA is a commitment to grow together and build a trustworthy service.",
+        services_title: "Main services",
+        services_intro: "A complete presentation of the most common services of an IT support company.",
+        service_1_title: "IT maintenance",
+        service_1_text: "Review, optimization and setup of computers, laptops and systems.",
+        service_2_title: "Technical support",
+        service_2_text: "Issue resolution, remote or on-site help and software assistance.",
+        service_3_title: "Networks and connectivity",
+        service_3_text: "Router, Wi-Fi and network equipment setup and connectivity improvement.",
+        service_4_title: "Digital security",
+        service_4_text: "Backups, antivirus, access protection and preventive measures.",
+        service_5_title: "Installation and setup",
+        service_5_text: "Deployment of devices, programs, accounts and peripherals.",
+        service_6_title: "Technology consulting",
+        service_6_text: "Recommendations on equipment, renewals, purchases and digital improvements.",
+        why_title: "Why choose us",
+        why_subtitle: "Professional image, clear support and practical solutions",
+        why_text: "We work with a simple idea: technology should help, not become a problem.",
+        advantages_title: "Advantages",
+        advantages_intro: "Key strengths you can highlight on your corporate website.",
+        adv_1_title: "Personalized service",
+        adv_1_text: "Each client has different needs. We adapt our response to every case.",
+        adv_2_title: "Speed and closeness",
+        adv_2_text: "Clear response focused on solving issues quickly.",
+        adv_3_title: "Prevention and security",
+        adv_3_text: "We do not only solve problems: we also help prevent them.",
+        adv_4_title: "Modern image",
+        adv_4_text: "Professional visual communication aligned with the technology sector.",
+        process_title: "How we work",
+        process_intro: "A simple process that builds trust and makes communication easier.",
+        step_1_title: "1. First contact",
+        step_1_text: "You explain the need or issue and we analyze the case.",
+        step_2_title: "2. Diagnosis",
+        step_2_text: "We evaluate the problem and the best solution.",
+        step_3_title: "3. Proposal",
+        step_3_text: "We present a clear action: support, maintenance, improvement or installation.",
+        step_4_title: "4. Follow-up",
+        step_4_text: "We verify that the result is correct and functional.",
+        contact_title: "Contact",
+        contact_intro: "Keep this section ready and replace it later with the real company details.",
+        form_title: "Send us an inquiry",
+        form_button: "Send inquiry",
+        contact_data_title: "Contact details",
+        contact_company_label: "Company:",
+        contact_phone_label: "Phone:",
+        contact_area_label: "Service area:",
+        contact_hours_label: "Hours:",
+        ready_title: "Ready for GitHub Pages",
+        ready_subtitle: "Static website, fast and easy to maintain",
+        ready_button: "Project ready",
+        footer_contact: "Contact"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem("siteLanguage", lang);
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+
+    const switcher = document.getElementById("languageSwitcher");
+    const savedLanguage = localStorage.getItem("siteLanguage") || "ca";
+    switcher.value = savedLanguage;
+    setLanguage(savedLanguage);
+
+    switcher.addEventListener("change", function () {
+      setLanguage(this.value);
+    });
+  </script>
+</body>
+</html>
